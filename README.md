@@ -1,5 +1,12 @@
 # Active Directory LLMNR Poisoning and Mitigation Lab
 
+![Lab Type](https://img.shields.io/badge/Lab-Active%20Directory%20Security-blue)
+![Attack](https://img.shields.io/badge/Attack-LLMNR%20Poisoning-red)
+![Defense](https://img.shields.io/badge/Defense-Group%20Policy%20%26%20NetBIOS%20Hardening-brightgreen)
+![Tools](https://img.shields.io/badge/Tools-Responder%20%7C%20Hashcat-orange)
+
+This project demonstrates how LLMNR poisoning can be leveraged in an Active Directory lab to capture NTLM authentication material, crack weak credentials, and validate defensive mitigations. The lab highlights both the attack path and the hardening steps used to reduce exposure.
+
 This project demonstrates how LLMNR poisoning can be leveraged in an Active Directory lab to capture NTLM authentication material, crack weak credentials, and validate defensive mitigations. The lab highlights both the attack path and the hardening steps used to reduce exposure.
 
 ## Table of Contents

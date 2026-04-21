@@ -2,6 +2,20 @@
 
 This project demonstrates how LLMNR poisoning can be leveraged in an Active Directory lab to capture NTLM authentication material, crack weak credentials, and validate defensive mitigations. The lab highlights both the attack path and the hardening steps used to reduce exposure.
 
+## Table of Contents
+
+- [Skills Demonstrated](#skills-demonstrated)
+- [Tools Used](#tools-used)
+- [Lab Environment](#lab-environment)
+- [Key Takeaways](#key-takeaways)
+- [Disclaimer](#disclaimer)
+- [Project Walk-through](#project-walk-through)
+- [Attack Workflow](#attack-workflow)
+- [Mitigation and Hardening](#mitigation-and-hardening)
+- [Why This Matters](#why-this-matters)
+- [Project Structure](#project-structure)
+- [Future Improvements](#future-improvements)
+
 ## Skills Demonstrated
 
 - Active Directory security testing

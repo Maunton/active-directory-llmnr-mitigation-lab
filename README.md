@@ -13,6 +13,23 @@ This project demonstrates how LLMNR poisoning can be leveraged in an Active Dire
 - Defensive mitigation validation
 - Security documentation and lab reporting
 
+## Tools Used
+
+- Responder
+- Hashcat
+- Group Policy Management
+- Windows Network Adapter Settings
+- Kali Linux
+- VirtualBox
+
+## Lab Environment
+
+- Windows Server 2022
+- Windows 10
+- Kali Linux
+- Ubuntu Server 22.04
+- VirtualBox VM environment
+
 ## Key Takeaways
 
 - LLMNR and NetBIOS name resolution can expose Windows environments to credential capture attacks.
@@ -31,7 +48,7 @@ This project was conducted in a controlled lab environment for educational and d
   <img src="images/01-network-diagram.png" height="80%" width="80%" alt="Network diagram"/>
 </p>
 
-## LLMNR Poisoning with Responder
+## Attack Workflow
 
 This phase demonstrates how LLMNR poisoning can be used to capture NTLM authentication material from a victim system in a controlled lab environment.
 
@@ -39,9 +56,9 @@ This phase demonstrates how LLMNR poisoning can be used to capture NTLM authenti
 ```bash
 sudo responder -I eth0 -dPv
 ```
-## Attack Demonstration
 
 ### 1. Responder Capture
+
 This screenshot shows Responder actively listening for LLMNR/NBT-NS traffic and preparing to capture authentication attempts from the victim system.
 
 <p align="center">
@@ -49,6 +66,7 @@ This screenshot shows Responder actively listening for LLMNR/NBT-NS traffic and 
 </p>
 
 ### 2. Victim Authentication Attempt
+
 This step shows the victim attempting to authenticate, which triggers the poisoned name resolution workflow in the lab.
 
 <p align="center">
@@ -56,13 +74,21 @@ This step shows the victim attempting to authenticate, which triggers the poison
 </p>
 
 ### 3. NTLM Hash Capture
+
 Here, the victim's NTLM hash is captured by the attacker system using Responder.
 
 <p align="center">
   <img src="images/04-captured-hash.png" height="80%" width="80%" alt="Captured hash"/>
 </p>
 
+### Hashcat Command
+
+```bash
+hashcat -m 5600 hash.txt ~/Desktop/ad-project/passwords.txt
+```
+
 ### 4. Hashcat Password Recovery
+
 This screenshot demonstrates the captured hash being cracked with Hashcat to reveal the underlying password.
 
 <p align="center">
@@ -72,6 +98,7 @@ This screenshot demonstrates the captured hash being cracked with Hashcat to rev
 ## Mitigation and Hardening
 
 ### 5. Group Policy Hardening
+
 This image shows the Group Policy setting used to disable multicast name resolution and reduce the risk of LLMNR poisoning.
 
 <p align="center">
@@ -79,6 +106,7 @@ This image shows the Group Policy setting used to disable multicast name resolut
 </p>
 
 ### 6. NetBIOS Hardening
+
 This step disables NetBIOS over TCP/IP to further reduce legacy name resolution exposure within the environment.
 
 <p align="center">
@@ -86,6 +114,7 @@ This step disables NetBIOS over TCP/IP to further reduce legacy name resolution 
 </p>
 
 ### 7. Post-Mitigation Validation
+
 This final screenshot confirms that the mitigation steps were applied and the attack path was reduced or blocked.
 
 <p align="center">
@@ -95,6 +124,22 @@ This final screenshot confirms that the mitigation steps were applied and the at
 ## Why This Matters
 
 Legacy name resolution protocols such as LLMNR and NetBIOS can create unnecessary risk in Windows environments. This lab demonstrates how attackers may abuse these protocols and how defenders can reduce risk through policy and configuration changes.
+
+## Project Structure
+
+```text
+.
+├── README.md
+└── images
+    ├── 01-network-diagram.png
+    ├── 02-responder-capture.png
+    ├── 03-victim-authentication.png
+    ├── 04-captured-hash.png
+    ├── 05-hashcat-result.png
+    ├── 06-group-policy-mitigation.png
+    ├── 07-netbios-hardening.png
+    └── 08-post-mitigation-validation.png
+```
 
 ## Future Improvements
 
